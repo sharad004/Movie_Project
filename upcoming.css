@@ -1,0 +1,116 @@
+/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color:#FFFFFF;
+    background-color: #2F2F2F;
+    
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0A0A23;
+    padding: 15px 20px;
+    color: #fff;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #1abc9c;
+}
+
+/* Content Section */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.content h2 {
+    font-family: "Montserrat", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: #00FFF7;
+}
+
+/* Movie Grid */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.movie-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.movie-item img {
+    width: 100%; /* Ensure it fits the container's width */
+    aspect-ratio: 2 / 3; /* Maintain a 2:3 portrait aspect ratio */
+    object-fit: cover; /* Ensure the image fills the area while cropping if needed */
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px 10px 0 0;
+}
+
+.movie-item h3 {
+    font-size: 18px;
+    margin: 15px 0;
+    color: #DC143C;
+}
+
+.movie-item button {
+    color: #ffff;
+    background-color: #FF6A13;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.movie-item button:hover {
+    background-color: #e3590a;
+}

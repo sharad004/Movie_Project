@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="bookings.css">
+   
+</head>
+<body>
+    <div class="navbar">
+        <h1>MovieBooking</h1>
+        <ul>
+            <li><a href="dashboard.html">Home</a></li>
+            <li><a href="nowshowing.html">Now Showing</a></li>
+            <li><a href="upcoming.html">Upcoming</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="card">
+            <h2>My Bookings</h2>
+
+            <div class="booking-item">
+                <div>
+                    <h3>Movie Title 1</h3>
+                    <span>Showtime: Dec 20, 2024, 7:00 PM</span>
+                </div>
+                <button>Cancel</button>
+            </div>
+
+            <div class="booking-item">
+                <div>
+                    <h3>Movie Title 2</h3>
+                    <span>Showtime: Dec 22, 2024, 9:00 PM</span>
+                </div>
+                <button>Cancel</button>
+            </div>
+
+            <div class="booking-item">
+                <div>
+                    <h3>Movie Title 3</h3>
+                    <span>Showtime: Dec 25, 2024, 5:00 PM</span>
+                </div>
+                <button>Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        function toggleTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        };
+    </script> -->
+</body>
+</html>
