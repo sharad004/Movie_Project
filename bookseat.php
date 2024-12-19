@@ -271,8 +271,12 @@ bookingForm.addEventListener('submit', function(event) {
 
         // Store the booked seats and total price in localStorage
         const totalAmount = selectedSeats.length * pricePerSeat;
-        localStorage.setItem('bookedSeats', JSON.stringify(selectedSeats)); // Store the booked seats
-        localStorage.setItem('totalPrice', totalAmount); // Store the total price
+        let finalDetail={
+            totalPrice:totalAmount,
+            seatDetail:selectedSeats
+        }
+        localStorage.setItem('details', JSON.stringify(finalDetail)); // Store the booked seats
+        // localStorage.setItem('totalPrice', totalAmount); // Store the total price
 
         // Show the Cancel Booking button
         document.getElementById('cancel-booking-container').style.display = 'block';

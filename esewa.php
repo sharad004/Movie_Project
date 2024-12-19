@@ -62,42 +62,152 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     // Show a sample form to initiate payment
     ?>
-    <form method="POST" action="">
-        <label for="amount">Amount:</label>
-        <input type="text" id="amount" name="amount" required><br>
-        
-        <label for="productName">Product Name:</label>
-        <input type="text" id="productName" name="productName" required><br>
-        
-        <label for="transactionId">Transaction ID:</label>
-        <input type="text" id="transactionId" name="transactionId" required><br>
-        <div id="amount">dsafas</div>
-        
-        <button type="submit">Pay with eSewa</button>
-    </form>
+    <div class="container">
+        <h2 class="heading">Payment Details</h2>
+        <form method="POST" action="" class="payment-form">
+            <div class="form-group">
+                <label for="amount1">Total:</label>
+                <input type="text" id="amount1" name="amount" required readonly class="input-field"><br>
+            </div>
+            <div class="form-group">
+                <label for="amount2">Sub-Total:</label>
+                <input type="text" id="amount2" name="amount" required readonly class="input-field"><br>
+            </div>
+            <div style="display:none;">
+                <div class="form-group">
+                    <label for="productName">Product Name:</label>
+                    <input type="text" value="prod" id="productName" name="productName" required class="input-field"><br>
+                </div>
+                <div class="form-group">
+                    <label for="transactionId">Transaction ID:</label>
+                    <input type="text" value="shard" id="transactionId" name="transactionId" required class="input-field"><br>
+                </div>
+            </div>
+            <button type="submit" class="submit-btn">Pay with eSewa</button>
+        </form>
+        <div id="booked-seat" class="price-display">
+            <p id="show"></p>
+        </div>
+    </div>
     <?php
 }
-
 ?>
+
 <script>
-    window.onload = function() {
-    let amnt = document.getElementById('amount');
-    // Check if there is any booking information in localStorage
-    const storedSeats = localStorage.getItem('bookedSeats');
-    const storedTotalPrice = localStorage.getItem('totalPrice');
-
+    let amnt1 = document.getElementById('amount1');
+    let amnt2 = document.getElementById('amount2');
+    let show = document.getElementById('show');
     
-        // Convert the stored seats from string back to an array
-        const bookedSeatsArray = JSON.parse(storedSeats); // Parse the seats array
-        const totalPrice = JSON.parse(storedTotalPrice); // totalPrice is a string representing the amount
-console.log(totalPrice)
-        // Prepare content to display
-        let content = `<p>Total Price: NPR ${totalPrice}</p>`;  // Showing total price
+    window.onload = function() {
+        // Get stored details from localStorage
+        let finalDetailsFromLocalStorage = localStorage.getItem('details');
+        
+        if (finalDetailsFromLocalStorage) {
+            // Parse the details data if it exists
+            let parseData = JSON.parse(finalDetailsFromLocalStorage);
+            console.log(parseData);
 
-        // Update the amount displayed
-        amnt.innerHTML = content;  // Set the content correctly here
- 
-};
+            // Display the seat information
+            allSeatInfo(parseData.seatDetail);
 
+            if (parseData && parseData.totalPrice) {
+                // Update the amounts displayed on the page
+                amnt1.value = parseData.totalPrice;
+                amnt2.value = parseData.totalPrice;
+            } else {
+                // If totalPrice doesn't exist in the parsed data, show a default message
+                amnt1.value = "No total price available.";
+            }
+        } else {
+            // If no data found in localStorage, display a default message
+            amnt1.value = "No booking details found.";
+        }
 
-    </script>
+        // Function to display all seat details
+        function allSeatInfo(seats) {
+            if (seats && Array.isArray(seats)) {
+                let seatList = "<ul>";
+                seats.forEach(seat => {
+                    seatList += `<li>${seat}</li>`;
+                });
+                seatList += "</ul>";
+                show.innerHTML = seatList;
+            } else {
+                show.innerHTML = "<p>No seats booked.</p>";
+            }
+        }
+    };
+</script>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .heading {
+        text-align: center;
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .input-field {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-top: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        background-color: #007bff;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .price-display {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .form-group input[readonly] {
+        background-color: #e9ecef;
+    }
+</style>
